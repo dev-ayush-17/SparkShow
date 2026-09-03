@@ -5,6 +5,32 @@ so you can manage the product catalog and push OTA updates to all shop devices.
 
 ---
 
+## 🔒 Security First — Credential Files Are Gitignored
+
+The following files contain real API keys and are **excluded from git** (`.gitignore`).
+They will **never** be pushed to GitHub:
+
+| Gitignored (your real keys) | Template in repo (safe to commit) |
+|---|---|
+| `lib/firebase_options.dart` | `lib/firebase_options.dart.example` |
+| `android/app/google-services.json` | `android/app/google-services.json.example` |
+| `admin_dashboard/firebase-config.js` | `admin_dashboard/firebase-config.js.example` |
+
+**Every time you clone the repo on a new machine**, copy the `.example` files and fill in your values:
+
+```bash
+# Flutter app credentials
+cp lib/firebase_options.dart.example lib/firebase_options.dart
+cp android/app/google-services.json.example android/app/google-services.json
+
+# Admin dashboard credentials
+cp admin_dashboard/firebase-config.js.example admin_dashboard/firebase-config.js
+```
+
+Then fill in the real values (from Firebase Console) in each copied file.
+
+---
+
 ## Why Firebase?
 
 Before Firebase, updating the app meant:

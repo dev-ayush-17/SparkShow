@@ -56,3 +56,16 @@ coverage/
 # Temporary files
 *.tmp
 *.temp
+
+# ── Firebase Secrets (NEVER commit these) ──────────────────────
+# These files contain API keys and credentials.
+# Copy the corresponding .example file, rename it (remove .example),
+# and fill in your real values from the Firebase Console.
+# See admin_dashboard/SETUP_GUIDE.md for step-by-step instructions.
+
+# Flutter app credentials
+lib/firebase_options.dart
+android/app/google-services.json
+
+# Admin dashboard credentials
+admin_dashboard/firebase-config.js

@@ -1,6 +1,15 @@
 {
-  "_comment": "PLACEHOLDER - Replace this entire file with your real google-services.json downloaded from Firebase Console",
-  "_instructions": "See admin_dashboard/SETUP_GUIDE.md for step-by-step instructions",
+  "_INSTRUCTIONS": [
+    "HOW TO USE THIS FILE:",
+    "1. Copy this file: google-services.json.example → google-services.json",
+    "2. Replace this entire file with the real google-services.json downloaded from Firebase Console",
+    "3. google-services.json is gitignored — it will NEVER be pushed to GitHub",
+    "",
+    "WHERE TO GET IT:",
+    "Firebase Console → Project Settings → General → Your apps → Android → Download google-services.json",
+    "",
+    "See admin_dashboard/SETUP_GUIDE.md for full instructions."
+  ],
   "project_info": {
     "project_number": "YOUR_PROJECT_NUMBER",
     "project_id": "YOUR_PROJECT_ID",
