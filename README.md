@@ -238,3 +238,102 @@ This is an internal business tool. For issues or feature requests, contact the d
 ## Version History
 
 - **Version 1.0.0**: Initial release with offline catalog and video playback
+
+---
+
+## Admin Dashboard & OTA Updates *(feature/admin-dashboard)*
+
+This branch introduces a **web-based admin dashboard** and an **OTA (Over-the-Air) update system**
+that eliminates the need to manually distribute APK files to each shop device.
+
+### How It Works
+
+```
+Admin Dashboard (browser)
+        │
+        │  writes product catalog & new APK version to
+        ▼
+    Firebase Backend
+    ├── Firestore   → product catalog, app config, version document
+    └── Storage     → hosted APK files
+        │
+        │  polled on each app startup by
+        ▼
+    Flutter App (shop devices)
+    ├── RemoteCatalogService  → fetches latest products.json from Firestore
+    ├── UpdateService         → checks for new APK version
+    └── UpdateDialog          → prompts user to install update
+```
+
+### Admin Dashboard
+
+Located in `admin_dashboard/` — a standalone HTML/JS web app for your eyes only.
+
+**Tabs:**
+- **Products** — Add, edit, or delete products in the Firestore catalog. Changes are visible to
+  all devices the next time they open the app.
+- **APK Releases** — Upload a new APK to Firebase Storage and set the version number.
+  All devices are notified automatically.
+- **App Config** — Push settings like force-update flags and maintenance messages.
+
+**To access:**
+1. Fill in your Firebase credentials (see `admin_dashboard/SETUP_GUIDE.md`)
+2. Open `admin_dashboard/index.html` in a browser, or deploy to Firebase Hosting
+
+### OTA Update Flow
+
+1. You build a new APK: `flutter build apk --release`
+2. Upload it in the dashboard → APK Releases tab
+3. Dashboard writes the version + download URL to Firestore
+4. Next time any shop device opens the app with internet access:
+   - `UpdateService` detects the new version
+   - An update dialog appears: "Update Now" or "Later"
+   - Tapping "Update Now" downloads and installs the APK automatically
+5. No USB, no manual file transfer needed ✅
+
+### Offline Behaviour (unchanged)
+
+The app remains **100% offline-capable**. Firebase is only consulted when:
+- The device has internet access
+- Firebase credentials have been filled in
+
+If Firebase is unreachable or not configured, the app silently falls back to the
+bundled `assets/data/products.json` and local videos — exactly as in V1.
+
+### Setup
+
+See **[admin_dashboard/SETUP_GUIDE.md](admin_dashboard/SETUP_GUIDE.md)** for the full
+Firebase project creation, credentials, Firestore rules, and hosting deployment steps.
+
+### Project Structure (updated)
+
+```
+lib/
+├── models/              # Product data models
+├── data/
+│   └── product_repository.dart  # Now fetches from Firestore with offline fallback
+├── screens/             # App screens (Home, Video)
+├── widgets/
+│   └── update_dialog.dart       # OTA update prompt dialog
+├── services/
+│   ├── firebase_initializer.dart # Safe Firebase init (skips if credentials are placeholder)
+│   ├── remote_catalog_service.dart # Firestore product fetching
+│   └── update_service.dart       # OTA version check + APK download
+├── utils/               # Utility functions
+└── firebase_options.dart         # Firebase credentials (fill these in!)
+
+admin_dashboard/          # Web-based admin dashboard (not part of the Flutter app)
+├── index.html            # Login page
+├── dashboard.html        # Main dashboard
+├── styles.css            # Premium dark theme
+├── firebase-config.js    # Firebase SDK config (fill these in!)
+├── auth.js               # Auth module
+├── products.js           # Firestore CRUD for products
+├── releases.js           # APK upload + version management
+├── config.js             # App settings management
+├── dashboard.js          # Tab navigation + status indicator
+└── SETUP_GUIDE.md        # Step-by-step Firebase setup instructions
+
+android/app/google-services.json  # Firebase Android credentials (fill this in!)
+firebase.json                     # Firebase Hosting configuration
+```
