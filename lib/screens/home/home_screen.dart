@@ -6,6 +6,8 @@ import '../../widgets/search_bar.dart';
 import '../../widgets/category_filter.dart';
 import '../../utils/constants.dart';
 import '../video/video_screen.dart';
+import '../../services/update_service.dart';
+import '../../widgets/update_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final ProductRepository _repository = ProductRepository();
+  final UpdateService _updateService = UpdateService();
   List<Product> _products = [];
   List<String> _categories = [];
   String _selectedCategory = 'All';
@@ -40,6 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
         _categories = categories;
         _isLoading = false;
       });
+
+      // Silently check for an OTA update after the UI is ready.
+      // No-op when Firebase is not configured or device is offline.
+      _checkForUpdate();
     } catch (e) {
       setState(() => _isLoading = false);
       if (mounted) {
@@ -51,6 +58,14 @@ class _HomeScreenState extends State<HomeScreen> {
         );
       }
     }
+  }
+
+  /// Checks Firestore for a new app version and shows the update dialog
+  /// if one is available. Runs in the background — never blocks the UI.
+  Future<void> _checkForUpdate() async {
+    final result = await _updateService.checkForUpdate();
+    if (!mounted) return;
+    await UpdateDialog.show(context, result: result);
   }
 
   Future<void> _filterProducts() async {
