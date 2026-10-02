@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SparkShow Admin Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="dashboard-body">
+
+  <!-- Auth guard overlay (shown until auth state is verified) -->
+  <div id="auth-guard" class="auth-guard">
+    <div class="guard-spinner"></div>
+    <p>Verifying access...</p>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon-sm">🎆</span>
+      <div>
+        <div class="sidebar-brand">SparkShow</div>
+        <div class="sidebar-role">Admin Dashboard</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item active" data-tab="products" href="#">
+        <span class="nav-icon">📦</span>
+        <span>Products</span>
+      </a>
+      <a class="nav-item" data-tab="releases" href="#">
+        <span class="nav-icon">🚀</span>
+        <span>APK Releases</span>
+      </a>
+      <a class="nav-item" data-tab="config" href="#">
+        <span class="nav-icon">⚙️</span>
+        <span>App Config</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info" id="user-info">
+        <div class="user-avatar" id="user-avatar">A</div>
+        <div class="user-details">
+          <div class="user-email" id="user-email">Loading...</div>
+          <div class="user-role">Administrator</div>
+        </div>
+      </div>
+      <button class="btn-logout" id="logout-btn" title="Sign out">⏏</button>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h2 class="topbar-title" id="topbar-title">Products</h2>
+        <span class="topbar-subtitle" id="topbar-subtitle">Manage your product catalog</span>
+      </div>
+      <div class="topbar-right">
+        <div class="status-badge" id="status-badge">
+          <span class="status-dot"></span>
+          <span id="status-text">Connected</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ─────────────────────── PRODUCTS TAB ─────────────────────── -->
+    <section class="tab-content active" id="tab-products">
+      <div class="section-bar">
+        <div class="search-box">
+          <input
+            type="text"
+            id="product-search"
+            class="form-input search-input"
+            placeholder="🔍 Search products..."
+          />
+        </div>
+        <div class="section-actions">
+          <select id="category-filter" class="form-select">
+            <option value="">All Categories</option>
+            <option value="Fountain">Fountain</option>
+            <option value="Rocket">Rocket</option>
+            <option value="Ground">Ground</option>
+            <option value="Decorative">Decorative</option>
+            <option value="Combo">Combo</option>
+          </select>
+          <button class="btn btn-primary" id="add-product-btn">+ Add Product</button>
+        </div>
+      </div>
+
+      <div id="products-alert" class="alert hidden"></div>
+
+      <div class="table-wrapper">
+        <table class="data-table" id="products-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Keywords</th>
+              <th>Description</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="products-tbody">
+            <tr id="products-loading-row">
+              <td colspan="6" class="loading-cell">
+                <div class="spinner"></div>
+                <span>Loading products...</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ─────────────────────── RELEASES TAB ─────────────────────── -->
+    <section class="tab-content" id="tab-releases">
+      <div class="releases-grid">
+        <!-- Current version card -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-icon">📱</span>
+            <h3>Current Live Version</h3>
+          </div>
+          <div class="version-display" id="current-version-display">
+            <span class="version-badge" id="live-version">Loading...</span>
+            <span class="version-date" id="live-date"></span>
+          </div>
+          <div id="release-notes-display" class="release-notes-text"></div>
+        </div>
+
+        <!-- Upload new release card -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-icon">⬆️</span>
+            <h3>Push New Release</h3>
+          </div>
+          <div id="release-alert" class="alert hidden"></div>
+
+          <div class="form-group">
+            <label class="form-label">New Version Number</label>
+            <input
+              type="text"
+              id="new-version"
+              class="form-input"
+              placeholder="e.g. 1.2.0"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">APK File</label>
+            <div class="file-drop-zone" id="apk-drop-zone">
+              <div class="drop-zone-content" id="drop-zone-content">
+                <div class="drop-icon">📁</div>
+                <p>Drag & drop APK here or <label for="apk-file" class="file-label">browse</label></p>
+                <span class="file-hint">.apk files only</span>
+                <input type="file" id="apk-file" accept=".apk" class="hidden" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Release Notes <span class="optional">(optional)</span></label>
+            <textarea
+              id="release-notes"
+              class="form-input form-textarea"
+              placeholder="What's new in this version? New products, bug fixes..."
+              rows="3"
+            ></textarea>
+          </div>
+
+          <!-- Upload progress -->
+          <div id="upload-progress-container" class="hidden">
+            <div class="progress-label">
+              <span id="upload-progress-label">Uploading APK...</span>
+              <span id="upload-progress-pct">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="upload-progress-fill"></div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-full" id="release-btn">
+            <span id="release-btn-text">🚀 Push Release to Devices</span>
+            <span id="release-spinner" class="spinner hidden"></span>
+          </button>
+
+          <p class="release-warning">
+            ⚠️ All shop devices will receive an update notification the next time they open the app.
+          </p>
+        </div>
+
+        <!-- Release history card -->
+        <div class="card card-full">
+          <div class="card-header">
+            <span class="card-icon">📋</span>
+            <h3>Release History</h3>
+          </div>
+          <div class="table-wrapper">
+            <table class="data-table" id="releases-table">
+              <thead>
+                <tr>
+                  <th>Version</th>
+                  <th>Pushed On</th>
+                  <th>Release Notes</th>
+                  <th>APK Link</th>
+                </tr>
+              </thead>
+              <tbody id="releases-tbody">
+                <tr>
+                  <td colspan="4" class="loading-cell">
+                    <div class="spinner"></div>
+                    <span>Loading release history...</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────── CONFIG TAB ─────────────────────── -->
+    <section class="tab-content" id="tab-config">
+      <div class="config-grid">
+        <div class="card">
+          <div class="card-header">
+            <span class="card-icon">🔧</span>
+            <h3>App Configuration</h3>
+          </div>
+          <div id="config-alert" class="alert hidden"></div>
+
+          <div class="form-group">
+            <label class="form-label">App Display Name</label>
+            <input type="text" id="cfg-app-name" class="form-input" value="Fireworks Showcase" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Force Update</label>
+            <div class="toggle-row">
+              <label class="toggle">
+                <input type="checkbox" id="cfg-force-update" />
+                <span class="toggle-slider"></span>
+              </label>
+              <span class="toggle-label">Force devices to update immediately (cannot dismiss)</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Maintenance Message <span class="optional">(shown in app when set)</span></label>
+            <textarea id="cfg-maintenance-msg" class="form-input form-textarea" rows="2"
+              placeholder="Leave blank to disable maintenance mode..."></textarea>
+          </div>
+          <button class="btn btn-primary" id="save-config-btn">Save Config</button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-icon">📊</span>
+            <h3>Quick Stats</h3>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-value" id="stat-products">—</div>
+              <div class="stat-label">Total Products</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" id="stat-categories">—</div>
+              <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" id="stat-version">—</div>
+              <div class="stat-label">Live Version</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ─────────────────── ADD / EDIT PRODUCT MODAL ─────────────────── -->
+  <div class="modal-overlay hidden" id="product-modal-overlay">
+    <div class="modal" id="product-modal">
+      <div class="modal-header">
+        <h3 id="modal-title">Add Product</h3>
+        <button class="modal-close" id="modal-close-btn">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="modal-alert" class="alert hidden"></div>
+
+        <input type="hidden" id="modal-product-id" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Product ID <span class="required">*</span></label>
+            <input type="text" id="modal-id" class="form-input" placeholder="e.g. 021" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category <span class="required">*</span></label>
+            <select id="modal-category" class="form-input">
+              <option value="">Select category...</option>
+              <option value="Fountain">Fountain</option>
+              <option value="Rocket">Rocket</option>
+              <option value="Ground">Ground</option>
+              <option value="Decorative">Decorative</option>
+              <option value="Combo">Combo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Title <span class="required">*</span></label>
+          <input type="text" id="modal-title-input" class="form-input" placeholder="e.g. Peacock Fountain" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea id="modal-description" class="form-input form-textarea" rows="2"
+            placeholder="Brief product description..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Keywords <span class="optional">(comma-separated)</span></label>
+          <input type="text" id="modal-keywords" class="form-input" placeholder="peacock, fountain, colorful" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Video Asset Path <span class="required">*</span></label>
+          <input type="text" id="modal-video" class="form-input"
+            placeholder="assets/videos/peacock_fountain.mp4" />
+          <span class="form-hint">Path to the bundled video asset in the app.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Thumbnail Asset Path <span class="required">*</span></label>
+          <input type="text" id="modal-thumbnail" class="form-input"
+            placeholder="assets/thumbnails/peacock_fountain.jpg" />
+          <span class="form-hint">Path to the bundled thumbnail asset in the app.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modal-cancel-btn">Cancel</button>
+        <button class="btn btn-primary" id="modal-save-btn">
+          <span id="modal-save-text">Save Product</span>
+          <span id="modal-save-spinner" class="spinner hidden"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm delete modal -->
+  <div class="modal-overlay hidden" id="delete-modal-overlay">
+    <div class="modal modal-sm">
+      <div class="modal-header">
+        <h3>Delete Product</h3>
+        <button class="modal-close" id="delete-modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-secondary);">
+          Are you sure you want to delete <strong id="delete-product-name" style="color:var(--text-primary)"></strong>?
+          <br /><br />
+          This removes it from the remote catalog. The bundled assets in the APK are unaffected.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="delete-cancel-btn">Cancel</button>
+        <button class="btn btn-danger" id="delete-confirm-btn">
+          <span id="delete-btn-text">Delete</span>
+          <span id="delete-spinner" class="spinner hidden"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="auth.js"></script>
+  <script src="products.js"></script>
+  <script src="releases.js"></script>
+  <script src="config.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

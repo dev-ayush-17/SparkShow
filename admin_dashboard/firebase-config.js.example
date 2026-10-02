@@ -1,0 +1,31 @@
+// ============================================================
+// FIREBASE CONFIG TEMPLATE — Admin Dashboard
+// ============================================================
+// HOW TO USE:
+//   1. Copy this file:  firebase-config.js.example → firebase-config.js
+//   2. Fill in your real values from the Firebase Console
+//   3. firebase-config.js is gitignored — it will NEVER be pushed to GitHub
+//
+// WHERE TO FIND VALUES:
+//   Firebase Console → Project Settings → General → Your apps → Web
+//   Copy the firebaseConfig object values below.
+//
+// See SETUP_GUIDE.md for full step-by-step instructions.
+// ============================================================
+
+const firebaseConfig = {
+  apiKey:            "YOUR_WEB_API_KEY",
+  authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId:         "YOUR_PROJECT_ID",
+  storageBucket:     "YOUR_PROJECT_ID.firebasestorage.app",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId:             "YOUR_WEB_APP_ID",
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// Expose services globally for use across other JS files
+const db      = firebase.firestore();
+const storage = firebase.storage();
+const auth    = firebase.auth();

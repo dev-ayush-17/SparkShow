@@ -1,0 +1,40 @@
+{
+  "_INSTRUCTIONS": [
+    "HOW TO USE THIS FILE:",
+    "1. Copy this file: google-services.json.example → google-services.json",
+    "2. Replace this entire file with the real google-services.json downloaded from Firebase Console",
+    "3. google-services.json is gitignored — it will NEVER be pushed to GitHub",
+    "",
+    "WHERE TO GET IT:",
+    "Firebase Console → Project Settings → General → Your apps → Android → Download google-services.json",
+    "",
+    "See admin_dashboard/SETUP_GUIDE.md for full instructions."
+  ],
+  "project_info": {
+    "project_number": "YOUR_PROJECT_NUMBER",
+    "project_id": "YOUR_PROJECT_ID",
+    "storage_bucket": "YOUR_PROJECT_ID.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "YOUR_ANDROID_APP_ID",
+        "android_client_info": {
+          "package_name": "com.fireworks.fireworks_showcase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "YOUR_ANDROID_API_KEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

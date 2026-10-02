@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'screens/home/home_screen.dart';
 import 'utils/constants.dart';
+import 'services/firebase_initializer.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Lock to portrait mode
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  // Initialize Firebase (safe — won't crash if credentials are placeholders yet)
+  await FirebaseInitializer.initialize();
+
   runApp(const FireworksShowcaseApp());
 }
 

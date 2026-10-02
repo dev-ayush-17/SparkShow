@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SparkShow Admin — Login</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body class="login-body">
+
+  <div class="login-bg">
+    <div class="login-orb orb-1"></div>
+    <div class="login-orb orb-2"></div>
+  </div>
+
+  <div class="login-container">
+    <!-- Logo -->
+    <div class="login-logo">
+      <div class="logo-icon">🎆</div>
+      <h1 class="logo-title">SparkShow</h1>
+      <p class="logo-sub">Admin Dashboard</p>
+    </div>
+
+    <!-- Card -->
+    <div class="login-card">
+      <h2 class="login-heading">Sign In</h2>
+      <p class="login-desc">Access is restricted to the shop administrator.</p>
+
+      <div id="login-error" class="alert alert-error hidden"></div>
+
+      <form id="login-form" autocomplete="on">
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="form-input"
+            placeholder="admin@example.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            class="form-input"
+            placeholder="••••••••"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+
+        <button type="submit" id="login-btn" class="btn btn-primary btn-full">
+          <span id="login-btn-text">Sign In</span>
+          <span id="login-spinner" class="spinner hidden"></span>
+        </button>
+      </form>
+
+      <p class="login-footer">
+        Only the registered admin can access this dashboard.
+      </p>
+    </div>
+  </div>
+
+  <!-- Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

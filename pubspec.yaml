@@ -38,6 +38,24 @@ dependencies:
   # Video player for local MP4 playback
   video_player: ^2.8.0
 
+  # Firebase - backend for remote catalog and OTA updates
+  firebase_core: ^3.6.0
+  cloud_firestore: ^5.4.3
+  firebase_storage: ^12.3.2
+  firebase_auth: ^5.3.1
+
+  # HTTP client - used to download APK during OTA update
+  http: ^1.2.2
+
+  # File system paths - needed to save downloaded APK
+  path_provider: ^2.1.4
+
+  # Read current app version (for OTA version comparison)
+  package_info_plus: ^8.1.0
+
+  # Open/install a downloaded APK file
+  open_file: ^3.3.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
