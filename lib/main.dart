@@ -13,14 +13,20 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
+  // Make status bar transparent — lets our dark background bleed through
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.light,
+  ));
+
   // Initialize Firebase (safe — won't crash if credentials are placeholders yet)
   await FirebaseInitializer.initialize();
 
-  runApp(const FireworksShowcaseApp());
+  runApp(const SparkShowApp());
 }
 
-class FireworksShowcaseApp extends StatelessWidget {
-  const FireworksShowcaseApp({super.key});
+class SparkShowApp extends StatelessWidget {
+  const SparkShowApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +37,13 @@ class FireworksShowcaseApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.primary,
           brightness: Brightness.dark,
+          surface: AppColors.surface,
         ),
         useMaterial3: true,
         fontFamily: 'Roboto',
         scaffoldBackgroundColor: AppColors.background,
         cardTheme: CardThemeData(
-          elevation: 4,
+          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppConstants.cardBorderRadius),
           ),

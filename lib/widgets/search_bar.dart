@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import '../utils/constants.dart';
 
-class AppSearchBar extends StatelessWidget {
+class AppSearchBar extends StatefulWidget {
   final String hintText;
   final ValueChanged<String> onChanged;
   final String? value;
@@ -9,44 +9,81 @@ class AppSearchBar extends StatelessWidget {
 
   const AppSearchBar({
     super.key,
-    this.hintText = 'Search fireworks...',
+    this.hintText = 'Search fireworks…',
     required this.onChanged,
     this.value,
     this.onClear,
   });
 
   @override
+  State<AppSearchBar> createState() => _AppSearchBarState();
+}
+
+class _AppSearchBarState extends State<AppSearchBar> {
+  bool _focused = false;
+
+  @override
   Widget build(BuildContext context) {
-    return TextField(
-      onChanged: onChanged,
-      style: const TextStyle(color: AppColors.textPrimary),
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: TextStyle(color: AppColors.textSecondary),
-        prefixIcon: const Icon(Icons.search, color: AppColors.textSecondary),
-        suffixIcon: value != null && value!.isNotEmpty
-            ? IconButton(
-                icon: const Icon(Icons.clear, color: AppColors.textSecondary),
-                onPressed: onClear ?? () => onChanged(''),
-              )
-            : null,
-        filled: true,
-        fillColor: AppColors.surface,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppConstants.cardBorderRadius),
-          borderSide: BorderSide.none,
+    final hasText = widget.value != null && widget.value!.isNotEmpty;
+
+    return Focus(
+      onFocusChange: (f) => setState(() => _focused = f),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        decoration: BoxDecoration(
+          color: AppColors.surfaceAlt,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: _focused
+                ? AppColors.primary.withValues(alpha: 0.7)
+                : const Color(0x12FFFFFF), // rgba(255,255,255,0.07)
+            width: _focused ? 1.5 : 1,
+          ),
+          boxShadow: _focused
+              ? [
+                  BoxShadow(
+                    color: AppColors.primary.withValues(alpha: 0.12),
+                    blurRadius: 10,
+                    spreadRadius: 0,
+                  )
+                ]
+              : [],
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppConstants.cardBorderRadius),
-          borderSide: BorderSide(color: Colors.grey[800]!),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppConstants.cardBorderRadius),
-          borderSide: const BorderSide(color: AppColors.primary, width: 2),
-        ),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: AppConstants.defaultPadding,
-          vertical: 12,
+        child: TextField(
+          onChanged: widget.onChanged,
+          style: const TextStyle(
+            color: AppColors.textPrimary,
+            fontSize: 14,
+          ),
+          decoration: InputDecoration(
+            hintText: widget.hintText,
+            hintStyle: const TextStyle(
+              color: AppColors.textSecondary,
+              fontSize: 13.5,
+            ),
+            prefixIcon: Icon(
+              Icons.search_rounded,
+              color: _focused ? AppColors.primary : AppColors.textSecondary,
+              size: 20,
+            ),
+            suffixIcon: hasText
+                ? IconButton(
+                    icon: const Icon(
+                      Icons.close_rounded,
+                      color: AppColors.textSecondary,
+                      size: 18,
+                    ),
+                    onPressed: widget.onClear ?? () => widget.onChanged(''),
+                  )
+                : null,
+            border: InputBorder.none,
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 13,
+            ),
+          ),
         ),
       ),
     );
