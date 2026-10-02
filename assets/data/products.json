@@ -1,182 +1,119 @@
 [
   {
     "id": "001",
-    "title": "Peacock Fountain",
-    "category": "Fountain",
-    "keywords": ["peacock", "fountain", "colorful", "decorative", "ground"],
-    "video": "assets/videos/peacock_fountain.mp4",
-    "thumbnail": "assets/thumbnails/peacock_fountain.jpg",
-    "description": "A beautiful peacock-shaped fountain with colorful LED lights"
+    "title": "Enjoy-180",
+    "category": "Sky Shooter",
+    "keywords": ["enjoy", "180", "180 shots", "sky shooter", "multi shot", "colorful", "aerial", "cake"],
+    "video": "assets/videos/Enjoy-180.mp4",
+    "thumbnail": "assets/thumbnails/Enjoy-180.jpg",
+    "description": "180 shots of colorful fireworks"
   },
   {
     "id": "002",
-    "title": "Golden Rain",
-    "category": "Fountain",
-    "keywords": ["golden", "rain", "sparkle", "fountain", "ground"],
-    "video": "assets/videos/golden_rain.mp4",
-    "thumbnail": "assets/thumbnails/golden_rain.jpg",
-    "description": "Golden sparkles cascade down like rain"
+    "title": "Euphoria-120",
+    "category": "Sky Shooter",
+    "keywords": ["euphoria", "120", "120 shots", "sky shooter", "multi shot", "colorful", "aerial", "cake", "celebration"],
+    "video": "assets/videos/Euphoria-120.mp4",
+    "thumbnail": "assets/thumbnails/Euphoria-120.webp",
+    "description": "120 shots of colorful fireworks"
   },
   {
     "id": "003",
-    "title": "Dragon Rocket",
-    "category": "Rocket",
-    "keywords": ["dragon", "rocket", "aerial", "fire", "flight"],
-    "video": "assets/videos/dragon_rocket.mp4",
-    "thumbnail": "assets/thumbnails/dragon_rocket.jpg",
-    "description": "Dragon-shaped rocket with fire trail effects"
+    "title": "Garba Night",
+    "category": "Sky Shooter",
+    "keywords": ["garba", "night", "garba night", "48 shots", "48", "navratri", "festival", "dance night", "celebration", "colorful", "sky shooter"],
+    "video": "assets/videos/GarbaNight.mp4",
+    "thumbnail": "assets/thumbnails/garba-night.webp",
+    "description": "48 shots of colorful fireworks"
   },
   {
     "id": "004",
-    "title": "Sky Blossom",
-    "category": "Rocket",
-    "keywords": ["sky", "blossom", "flower", "aerial", "bloom"],
-    "video": "assets/videos/sky_blossom.mp4",
-    "thumbnail": "assets/thumbnails/sky_blossom.jpg",
-    "description": "Blooming flower effect in the sky"
+    "title": "Mori Haldi 120",
+    "category": "Sky Shooter",
+    "keywords": ["mori", "haldi", "haldi 120", "120 shots", "120", "wedding", "shaadi", "ceremony", "colorful", "sky shooter", "multi shot"],
+    "video": "assets/videos/Mori-Haldi.mp4",
+    "thumbnail": "assets/thumbnails/mori-haldi-120.jpg",
+    "description": "120 shots of colorful fireworks"
   },
   {
     "id": "005",
-    "title": "Ground Spinner",
-    "category": "Ground",
-    "keywords": ["ground", "spinner", "spinning", "ground_effect", "rotating"],
-    "video": "assets/videos/ground_spinner.mp4",
-    "thumbnail": "assets/thumbnails/ground_spinner.jpg",
-    "description": "Fast-spinning ground firework with color trails"
+    "title": "Mori Henna",
+    "category": "Sky Shooter",
+    "keywords": ["mori", "henna", "mehndi", "60 shots", "60", "wedding", "shaadi", "ceremony", "colorful", "sky shooter"],
+    "video": "assets/videos/Mori-Henna.mp4",
+    "thumbnail": "assets/thumbnails/mori-henna.jpeg",
+    "description": "60 shots colorful"
   },
   {
     "id": "006",
-    "title": "Thunder Crackers",
-    "category": "Ground",
-    "keywords": ["thunder", "crackers", "loud", "noise", "ground"],
-    "video": "assets/videos/thunder_crackers.mp4",
-    "thumbnail": "assets/thumbnails/thunder_crackers.jpg",
-    "description": "Traditional firecrackers with thunderous sound"
+    "title": "Mori Milan",
+    "category": "Sky Shooter",
+    "keywords": ["mori", "milan", "100 shots", "100", "wedding", "shaadi", "reception", "colorful", "sky shooter", "multi shot"],
+    "video": "assets/videos/Mori-Milan.mp4",
+    "thumbnail": "assets/thumbnails/mori-milan.jpg",
+    "description": "100 shots colorful"
   },
   {
     "id": "007",
-    "title": "Royal Crown",
-    "category": "Decorative",
-    "keywords": ["royal", "crown", "decorative", "elegant", "display"],
-    "video": "assets/videos/royal_crown.mp4",
-    "thumbnail": "assets/thumbnails/royal_crown.jpg",
-    "description": "Crown-shaped decorative firework"
+    "title": "Mori Mehndi",
+    "category": "Sky Shooter",
+    "keywords": ["mori", "mehndi", "henna", "60 shots", "60", "wedding", "shaadi", "ceremony", "colorful", "sky shooter"],
+    "video": "assets/videos/Mori-Mehndi.mp4",
+    "thumbnail": "assets/thumbnails/mori-mehndi.jpg",
+    "description": "60 shots colorful"
   },
   {
     "id": "008",
-    "title": "Christmas Tree",
-    "category": "Decorative",
-    "keywords": ["christmas", "tree", "holiday", "decorative", "festive"],
-    "video": "assets/videos/christmas_tree.mp4",
-    "thumbnail": "assets/thumbnails/christmas_tree.jpg",
-    "description": "Christmas tree shaped firework with lights"
+    "title": "Mori Shagun",
+    "category": "Sky Shooter",
+    "keywords": ["mori", "shagun", "100 shots", "60", "blessing", "auspicious", "wedding", "celebration", "colorful", "sky shooter"],
+    "video": "assets/videos/Shagun-100-Shots.mp4",
+    "thumbnail": "assets/thumbnails/mori-shagun.jpg",
+    "description": "60 shots colorful"
   },
   {
     "id": "009",
-    "title": "Mega Combo Pack",
-    "category": "Combo",
-    "keywords": ["mega", "combo", "pack", "variety", "multiple"],
-    "video": "assets/videos/mega_combo.mp4",
-    "thumbnail": "assets/thumbnails/mega_combo.jpg",
-    "description": "Multiple fireworks in one package"
+    "title": "Penta Sky Shooter 50",
+    "category": "Sky Shooter",
+    "keywords": ["penta", "sky shooter", "50 shots", "50", "aerial", "multi shot", "colorful", "cake"],
+    "video": "assets/videos/Penta-Sky-Shooter.mp4",
+    "thumbnail": "assets/thumbnails/penta-50.jpg",
+    "description": "50 colorful shots"
   },
   {
     "id": "010",
-    "title": "Family Celebration Pack",
-    "category": "Combo",
-    "keywords": ["family", "celebration", "pack", "safe", "variety"],
-    "video": "assets/videos/family_celebration.mp4",
-    "thumbnail": "assets/thumbnails/family_celebration.jpg",
-    "description": "Safe family-friendly combination pack"
+    "title": "Tilak 240 Shots",
+    "category": "Sky Shooter",
+    "keywords": ["tilak", "240", "240 shots", "sky shooter", "multi shot", "large", "big", "colorful", "aerial", "cake"],
+    "video": "assets/videos/Tilak-240-Shots.mp4",
+    "thumbnail": "assets/thumbnails/tilak-240.jpg",
+    "description": "240 shots of colorful fireworks"
   },
   {
     "id": "011",
-    "title": "Neon Wheel",
-    "category": "Ground",
-    "keywords": ["neon", "wheel", "spinning", "ground", "colorful"],
-    "video": "assets/videos/neon_wheel.mp4",
-    "thumbnail": "assets/thumbnails/neon_wheel.jpg",
-    "description": "Neon-colored spinning wheel on the ground"
+    "title": "Titania 72 Shots",
+    "category": "Sky Shooter",
+    "keywords": ["titania", "72", "72 shots", "sky shooter", "multi shot", "colorful", "aerial", "cake"],
+    "video": "assets/videos/Titania-72.mp4",
+    "thumbnail": "assets/thumbnails/titania-72.jpg",
+    "description": "72 colorful shots"
   },
   {
     "id": "012",
-    "title": "Butterfly Wings",
-    "category": "Decorative",
-    "keywords": ["butterfly", "wings", "decorative", "colorful", "flying"],
-    "video": "assets/videos/butterfly_wings.mp4",
-    "thumbnail": "assets/thumbnails/butterfly_wings.jpg",
-    "description": "Butterfly-shaped firework with wing effects"
+    "title": "Vivah Utsav 60",
+    "category": "Sky Shooter",
+    "keywords": ["vivah", "utsav", "vivah utsav", "60 shots", "60", "wedding", "shaadi", "celebration", "colorful", "sky shooter"],
+    "video": "assets/videos/Vivah-Utsav-60.mp4",
+    "thumbnail": "assets/thumbnails/vivah-utsav.webp",
+    "description": "110 colorful shots"
   },
   {
     "id": "013",
-    "title": "Sky Lantern",
-    "category": "Rocket",
-    "keywords": ["sky", "lantern", "rising", "aerial", "glow"],
-    "video": "assets/videos/sky_lantern.mp4",
-    "thumbnail": "assets/thumbnails/sky_lantern.jpg",
-    "description": "Rising lantern with warm glow effect"
-  },
-  {
-    "id": "014",
-    "title": "Sparkler Fountain",
-    "category": "Fountain",
-    "keywords": ["sparkler", "fountain", "sparkles", "ground", "bright"],
-    "video": "assets/videos/sparkler_fountain.mp4",
-    "thumbnail": "assets/thumbnails/sparkler_fountain.jpg",
-    "description": "Bright sparkler fountain for close viewing"
-  },
-  {
-    "id": "015",
-    "title": "Silver Cascade",
-    "category": "Fountain",
-    "keywords": ["silver", "cascade", "waterfall", "fountain", "elegant"],
-    "video": "assets/videos/silver_cascade.mp4",
-    "thumbnail": "assets/thumbnails/silver_cascade.jpg",
-    "description": "Silver waterfall fountain effect"
-  },
-  {
-    "id": "016",
-    "title": "Party Starter Kit",
-    "category": "Combo",
-    "keywords": ["party", "starter", "kit", "variety", "celebration"],
-    "video": "assets/videos/party_starter.mp4",
-    "thumbnail": "assets/thumbnails/party_starter.jpg",
-    "description": "Complete party celebration kit"
-  },
-  {
-    "id": "017",
-    "title": "Color Burst",
-    "category": "Decorative",
-    "keywords": ["color", "burst", "explosion", "vibrant", "decorative"],
-    "video": "assets/videos/color_burst.mp4",
-    "thumbnail": "assets/thumbnails/color_burst.jpg",
-    "description": "Vibrant color burst effect"
-  },
-  {
-    "id": "018",
-    "title": "Volcano Eruption",
-    "category": "Fountain",
-    "keywords": ["volcano", "eruption", "fountain", "dramatic", "ground"],
-    "video": "assets/videos/volcano_eruption.mp4",
-    "thumbnail": "assets/thumbnails/volcano_eruption.jpg",
-    "description": "Dramatic volcano-shaped fountain"
-  },
-  {
-    "id": "019",
-    "title": "Whistling Missile",
-    "category": "Rocket",
-    "keywords": ["whistling", "missile", "rocket", "sound", "aerial"],
-    "video": "assets/videos/whistling_missile.mp4",
-    "thumbnail": "assets/thumbnails/whistling_missile.jpg",
-    "description": "Missile with whistling sound effect"
-  },
-  {
-    "id": "020",
-    "title": "Grand Finale Pack",
-    "category": "Combo",
-    "keywords": ["grand", "finale", "pack", "ultimate", "multiple"],
-    "video": "assets/videos/grand_finale.mp4",
-    "thumbnail": "assets/thumbnails/grand_finale.jpg",
-    "description": "Ultimate combination for grand finale"
+    "title": "Fan Cake",
+    "category": "Sky Shooter",
+    "keywords": ["fan", "cake", "fan cake", "49 shots", "49", "sky shooter", "aerial", "colorful", "multi shot"],
+    "video": "assets/videos/FanCake.mp4",
+    "thumbnail": "assets/thumbnails/FanCake.jpg",
+    "description": "49 colorful shots"
   }
 ]

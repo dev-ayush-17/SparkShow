@@ -118,19 +118,34 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildHeader() {
     return Container(
-      padding: const EdgeInsets.all(AppConstants.defaultPadding),
+      padding: const EdgeInsets.fromLTRB(
+        AppConstants.defaultPadding,
+        AppConstants.defaultPadding,
+        AppConstants.defaultPadding,
+        AppConstants.smallPadding,
+      ),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            width: 46,
+            height: 46,
             decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(12),
+              gradient: const LinearGradient(
+                colors: [Color(0xFFFF6B35), Color(0xFFFFB347)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(13),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.primary.withValues(alpha: 0.35),
+                  blurRadius: 10,
+                  offset: const Offset(0, 3),
+                ),
+              ],
             ),
-            child: const Icon(
-              Icons.local_fire_department,
-              size: 28,
-              color: AppColors.primary,
+            child: const Center(
+              child: Text('🎆', style: TextStyle(fontSize: 24)),
             ),
           ),
           const SizedBox(width: 12),
@@ -142,15 +157,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   AppConstants.appName,
                   style: TextStyle(
                     fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w800,
                     color: AppColors.textPrimary,
+                    letterSpacing: -0.3,
                   ),
                 ),
                 Text(
-                  'Product Catalog',
+                  'Sky Shooter Catalog',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 13,
                     color: AppColors.textSecondary,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
@@ -204,11 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.search_off,
-              size: 64,
-              color: AppColors.textSecondary,
-            ),
+            const Text('🔍', style: TextStyle(fontSize: 56)),
             const SizedBox(height: 16),
             const Text(
               'No products found',
@@ -220,8 +233,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(height: 8),
             const Text(
-              'Try adjusting your search or filter',
-              style: TextStyle(color: AppColors.textSecondary),
+              'Try a different name, shot count, or occasion',
+              style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
