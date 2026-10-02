@@ -69,3 +69,26 @@ android/app/google-services.json
 
 # Admin dashboard credentials
 admin_dashboard/firebase-config.js
+
+# ── Firebase CLI artifacts ──────────────────────────────────────
+# .firebaserc ties this repo to a specific Firebase project.
+# It is safe to commit (contains no secrets — just the project ID).
+# skills-lock.json and other tool-generated files should be ignored.
+skills-lock.json
+
+# ── IDE / AI tool config (not part of the project) ─────────────
+.agents/
+.claude/
+
+# ── Large binary assets (videos & thumbnails) ──────────────────
+# Videos are bundled into the APK at build time from local files.
+# They should NOT be stored in git (too large; use LFS or just keep locally).
+assets/videos/*.mp4
+assets/videos/*.mov
+assets/videos/*.avi
+
+# Thumbnails CAN be committed (small images) — intentionally NOT ignored.
+# If you prefer to keep them out of git too, uncomment:
+# assets/thumbnails/*.jpg
+# assets/thumbnails/*.png
+
