@@ -86,6 +86,10 @@ skills-lock.json
 assets/videos/*.mp4
 assets/videos/*.mov
 assets/videos/*.avi
+assets/thumbnails/*.jpg
+assets/thumbnails/*.jpeg
+assets/thumbnails/*.png
+assets/thumbnails/*.webp
 
 # Thumbnails CAN be committed (small images) — intentionally NOT ignored.
 # If you prefer to keep them out of git too, uncomment:
